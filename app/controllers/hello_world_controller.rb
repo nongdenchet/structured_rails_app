@@ -1,5 +1,5 @@
 class HelloWorldController < ApplicationController
   def index
-    @hello_world_props = { name: "Stranger" }
+    @props = { name: 'Ruby on Rails'}
   end
 end
