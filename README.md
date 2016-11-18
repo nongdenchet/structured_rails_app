@@ -1,1 +1,1 @@
-# Coffee Reciept
+# Coffee Recipes

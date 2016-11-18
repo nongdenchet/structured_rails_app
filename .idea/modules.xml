@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/coffee_reciept.iml" filepath="$PROJECT_DIR$/.idea/coffee_reciept.iml" />
+      <module fileurl="file://$USER_HOME$/Ruby on Rails/Project/coffee_recipes/.idea/coffee_reciept.iml" filepath="$USER_HOME$/Ruby on Rails/Project/coffee_recipes/.idea/coffee_reciept.iml" />
     </modules>
   </component>
 </project>
