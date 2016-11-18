@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 3.0'
+gem 'react_on_rails', '~> 6'
 gem 'capistrano-rails', group: :development
 
 group :development, :test do
