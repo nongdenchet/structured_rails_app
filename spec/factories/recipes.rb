@@ -14,10 +14,13 @@
 #  updated_at   :datetime         not null
 #
 
-class Recipe < ApplicationRecord
-  mount_uploader :image, ImageUploader
-
-  belongs_to :user
-  has_many :ingredients, dependent: :destroy
-  has_many :directions, dependent: :destroy
+FactoryGirl.define do
+  factory :recipe do
+    title Faker::Name.first_name
+    description Faker::Lorem.paragraph(1)
+    prepare_time 5
+    cook_time 10
+    ready_time 5
+    user
+  end
 end

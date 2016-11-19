@@ -93,6 +93,10 @@ GEM
     capybara-screenshot (1.0.14)
       capybara (>= 1.0, < 3)
       launchy
+    carrierwave (1.0.0.rc)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     cloudinary (1.2.4)
@@ -133,7 +137,7 @@ GEM
     cucumber-wire (0.0.1)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
-    devise (4.1.1)
+    devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
@@ -346,12 +350,13 @@ DEPENDENCIES
   capistrano-rails
   capybara
   capybara-screenshot
+  carrierwave (>= 1.0.0.rc, < 2.0)
   cloudinary
   coffee-rails (~> 4.2)
   coveralls
   cucumber-rails
   database_cleaner
-  devise (~> 4.1.1)
+  devise (~> 4.2.0)
   devise_token_auth!
   factory_girl_rails
   faker
