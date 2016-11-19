@@ -74,3 +74,4 @@ This repo is an approach to architect rails app into a more enterprise way
 ### Todo
 [ ] Add sample for CQSR (Comman Query Separate Responsibility)
 [ ] Add multiple steps create a model
+[ ] Add more complex use cases
