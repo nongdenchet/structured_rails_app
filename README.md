@@ -12,6 +12,7 @@ This repo is an approach to architect rails app into a more enterprise way
 - Components:
     1. `View` using React.js
     2. `Controller` does nothing than delegate each action to `Service` (automatically). Controller will discover appropriate service
+        
         For example:
         ```ruby
         class RecipesController < ApplicationController
@@ -22,6 +23,7 @@ This repo is an approach to architect rails app into a more enterprise way
         will discover `Recipes::Show` service and call it, then return data as `json`
     3. `Service` (Use Case) will do `business logic` and call `CQRS` or `ActiveRecord` for data access
     4. `Model` include only fields and assocications.
+        
         For example:
         ```ruby
         class Recipe < ApplicationRecord
@@ -33,6 +35,7 @@ This repo is an approach to architect rails app into a more enterprise way
         end
         ```
     5. `Validator` (Form Object) will do validation logic
+        
         For example:
         ```ruby
         class RecipeValidator < Validator
@@ -47,6 +50,7 @@ This repo is an approach to architect rails app into a more enterprise way
         end
         ```
     6. `Policy` for authorization
+        
         For example:
         ```ruby
         class RecipePolicy
@@ -65,6 +69,7 @@ This repo is an approach to architect rails app into a more enterprise way
         end
         ```
     7. `Serializer` (Presenter) for prepare data to return to the view
+        
         For example:
         ```ruby
         module Recipes
