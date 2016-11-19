@@ -5,6 +5,8 @@ This repo is an approach to architect rails app into a more enterprise way
 - Run `bundle install` to install gem
 - Run `npm install` to install node.js libraries
 - Run `npm run rails` to start server and development mode
+- Run `rails db:create db:migrate` to init database
+- Run `spring rspec spec` to run the test suites
 
 ### Architect
 - The architecture is inspired by [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
