@@ -1,9 +1,9 @@
 class RecipePolicy
-  def self.destroy?(user, record)
+  def self.destroy_record?(user, record)
     check_owner(user, record)
   end
 
-  def self.update?(user, record)
+  def self.update_record?(user, record)
     check_owner(user, record)
   end
 

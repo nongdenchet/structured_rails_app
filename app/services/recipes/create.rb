@@ -1,5 +1,7 @@
 module Recipes
   class Create < Service
+    require_authen!
+
     def process
       validate!
       recipe = user.recipes.create!(recipe_params)
@@ -7,10 +9,6 @@ module Recipes
     end
 
     private
-    def require_authen?
-      true
-    end
-
     def validate!
       RecipeValidator.new(recipe_params).validate!
     end

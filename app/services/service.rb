@@ -1,4 +1,7 @@
 class Service
+  include Support::Authen
+  include Support::Policy
+
   attr_accessor :user, :params
 
   def initialize(params, user = nil)
@@ -16,38 +19,19 @@ class Service
   end
 
   private
+  class << self
+    attr_accessor :policy, :require_authen
+
+    def with_policy(policy)
+      self.policy = policy
+    end
+
+    def require_authen!
+      self.require_authen = true
+    end
+  end
+
   def process
     raise 'This method must be implemented'
-  end
-
-  def policy
-    nil
-  end
-
-  def require_authen?
-    false
-  end
-
-  def authenticate!
-    if require_authen? && user == nil
-      raise Unauthorized
-    end
-  end
-
-  def authorize!
-    if policy
-      raise PermissionDenied unless policy.send(action, user)
-    end
-  end
-
-  def authorize_record!(record)
-    if policy
-      raise PermissionDenied unless policy.send(action, user, record)
-    end
-  end
-
-  def action
-    class_name = StringUtils.underscore(self.class.to_s)
-    class_name.split('/').last + '?'
   end
 end
