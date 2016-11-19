@@ -10,6 +10,6 @@ class StringUtils
   end
 
   def self.capitalize_first(value)
-    value.slice(0,1).capitalize + value.slice(1..-1)
+    value.slice(0, 1).capitalize + value.slice(1..-1)
   end
 end
