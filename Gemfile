@@ -13,7 +13,9 @@ gem 'redis', '~> 3.0'
 gem 'react_on_rails', '~> 6'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'faker'
-gem 'devise_token_auth'
+gem 'annotate'
+gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
+gem 'devise', '~> 4.1.1'
 gem 'flat-ui-sass', github: 'wingrunr21/flat-ui-sass'
 gem 'mini_racer', platforms: :ruby
 gem 'capistrano-rails', group: :development

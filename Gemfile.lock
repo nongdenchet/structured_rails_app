@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/lynndylanhurley/devise_token_auth.git
+  revision: 123cfb730ebaf4e2acc124edd39e68816cb0b8cf
+  specs:
+    devise_token_auth (0.1.39)
+      devise (> 3.5.2, <= 4.2)
+      rails (< 6)
+
+GIT
   remote: git://github.com/wingrunr21/flat-ui-sass.git
   revision: 97b99ebd00a73c17b55cfb537722aede93cc7e49
   specs:
@@ -52,6 +60,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (7.1.4)
     autoprefixer-rails (6.5.3)
       execjs
@@ -122,15 +133,12 @@ GEM
     cucumber-wire (0.0.1)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
-    devise (4.0.3)
+    devise (4.1.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise_token_auth (0.1.37)
-      devise (> 3.5.2, < 4.1)
-      rails (< 6)
     diff-lcs (1.2.5)
     docile (1.1.5)
     domain_name (0.5.20161021)
@@ -333,6 +341,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  annotate
   byebug
   capistrano-rails
   capybara
@@ -342,7 +351,8 @@ DEPENDENCIES
   coveralls
   cucumber-rails
   database_cleaner
-  devise_token_auth
+  devise (~> 4.1.1)
+  devise_token_auth!
   factory_girl_rails
   faker
   flat-ui-sass!

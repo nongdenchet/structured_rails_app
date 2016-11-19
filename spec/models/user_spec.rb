@@ -27,11 +27,8 @@
 #  updated_at             :datetime
 #
 
-class User < ActiveRecord::Base
-  include DeviseTokenAuth::Concerns::User
+require 'rails_helper'
 
-  devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :trackable, :validatable, :confirmable
-
-  has_many :recipes, dependent: :destroy
+RSpec.describe User, type: :model do
+  it { is_expected.to have_many(:recipes).dependent(:destroy) }
 end
