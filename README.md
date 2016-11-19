@@ -1,6 +1,11 @@
 # Structured rails application
 This repo is an approach to architect rails app into a more enterprise way
 
+### Setup
+- Run `bundle install` to install gem
+- Run `npm install` to install node.js libraries
+- Run `npm run rails` to start server and development mode
+
 ### Architect
 - The architecture is inspired by [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
 - Using common pattern in rails like: `Service Object`, `Form Object`, `Policy`, `Presenter`.
