@@ -40,7 +40,7 @@ RSpec.describe RecipesController, type: :controller do
     it 'return errors' do
       sign_in user
       post :create, recipe: {title: ''}, format: :json
-      expect(json_response_error.length).to eq(5)
+      expect(json_response_error.length).to eq(6)
     end
 
     it 'return 401' do
@@ -76,7 +76,7 @@ RSpec.describe RecipesController, type: :controller do
     it 'return errors' do
       sign_in user
       put :update, id: recipe.id, recipe: {title: ''}, format: :json
-      expect(json_response_error.length).to eq(5)
+      expect(json_response_error.length).to eq(6)
     end
 
     it 'return 401' do

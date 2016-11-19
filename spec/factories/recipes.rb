@@ -21,6 +21,7 @@ FactoryGirl.define do
     prepare_time 5
     cook_time 10
     ready_time 5
+    image { Helpers::Image.sample_image }
     user
   end
 end

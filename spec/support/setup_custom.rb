@@ -11,4 +11,3 @@ module CustomHelper
   include Helpers::Json
   include Helpers::Authen
 end
-
