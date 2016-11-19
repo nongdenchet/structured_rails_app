@@ -1,4 +1,4 @@
-# Structured rails application
+# Structured rails application [![Build Status](https://travis-ci.org/nongdenchet/structured_rails_app.svg?branch=master)](https://travis-ci.org/nongdenchet/structured_rails_app)
 This repo is an approach to architect rails app into a more enterprise way
 
 ### Setup
