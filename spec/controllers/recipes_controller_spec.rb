@@ -30,6 +30,12 @@ RSpec.describe RecipesController, type: :controller do
       expect(json_response.length).to eq(3)
     end
 
+    it 'return no recipes' do
+      sign_in user
+      get :index, format: :json
+      expect(json_response.length).to eq(0)
+    end
+
     it 'return 401' do
       get :index, format: :json
       expect(json_response['status']).to eq(401)
