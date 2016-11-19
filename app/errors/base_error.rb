@@ -10,6 +10,6 @@ class BaseError < StandardError
   end
 
   def to_json
-    {error: error, code: code, status: status}
+    {error: {message: error, code: code, status: status}}
   end
 end

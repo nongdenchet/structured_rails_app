@@ -15,8 +15,8 @@ RSpec.describe RecipesController, type: :controller do
 
     it 'return error 404' do
       get :show, id: 1, format: :json
-      expect(json_response['status']).to eq(404)
-      expect(json_response['code']).to eq('NOT_FOUND')
+      expect(json_response_error['status']).to eq(404)
+      expect(json_response_error['code']).to eq('NOT_FOUND')
     end
   end
 
@@ -38,8 +38,40 @@ RSpec.describe RecipesController, type: :controller do
 
     it 'return 401' do
       get :index, format: :json
-      expect(json_response['status']).to eq(401)
-      expect(json_response['code']).to eq('UNAUTHORIZED')
+      expect(json_response_error['status']).to eq(401)
+      expect(json_response_error['code']).to eq('UNAUTHORIZED')
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:other_user) }
+    let(:recipe) { create(:recipe, user: user) }
+
+    it 'delete recipe' do
+      sign_in user
+      delete :destroy, id: recipe.id, format: :json
+      expect(json_response['success']).to eq(true)
+    end
+
+    it 'return 401' do
+      delete :destroy, id: 1, format: :json
+      expect(json_response_error['status']).to eq(401)
+      expect(json_response_error['code']).to eq('UNAUTHORIZED')
+    end
+
+    it 'return 404' do
+      sign_in user
+      delete :destroy, id: 1, format: :json
+      expect(json_response_error['status']).to eq(404)
+      expect(json_response_error['code']).to eq('NOT_FOUND')
+    end
+
+    it 'return 403' do
+      sign_in other_user
+      delete :destroy, id: recipe.id, format: :json
+      expect(json_response_error['status']).to eq(403)
+      expect(json_response_error['code']).to eq('PERMISSION_DENIED')
     end
   end
 end

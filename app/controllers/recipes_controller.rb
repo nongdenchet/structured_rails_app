@@ -1,10 +1,8 @@
 class RecipesController < ApplicationController
   def show
-    run Recipes::Show.new(params)
   end
 
   def index
-    run Recipes::Index.new(params, current_user)
   end
 
   def create
@@ -13,6 +11,6 @@ class RecipesController < ApplicationController
   def update
   end
 
-  def delete
+  def destroy
   end
 end

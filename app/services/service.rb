@@ -9,18 +9,17 @@ class Service
   def execute
     begin
       authenticate!
-      authorize!
       process
     rescue ActiveRecord::RecordNotFound => _
       raise RecordNotFound
     end
   end
 
+  private
   def process
     raise 'This method must be implemented'
   end
 
-  protected
   def policy
     nil
   end
@@ -29,7 +28,6 @@ class Service
     false
   end
 
-  private
   def authenticate!
     if require_authen? && user == nil
       raise Unauthorized
@@ -49,6 +47,7 @@ class Service
   end
 
   def action
-    StringUtils.underscore(self.class.to_s)
+    class_name = StringUtils.underscore(self.class.to_s)
+    class_name.split('/').last + '?'
   end
 end

@@ -33,4 +33,10 @@ FactoryGirl.define do
     name Faker::Name.first_name
     password Faker::Lorem.characters(10)
   end
+
+  factory :other_user, class: User do
+    email 'ruby123@gmail.com'
+    name Faker::Name.first_name
+    password Faker::Lorem.characters(10)
+  end
 end

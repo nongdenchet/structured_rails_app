@@ -5,12 +5,11 @@ module Recipes
       recipes.map { |recipe| serialize(recipe) }
     end
 
-    protected
+    private
     def require_authen?
       true
     end
 
-    private
     def serialize(recipe)
       Recipes::ShortSerializer.new(recipe)
     end
