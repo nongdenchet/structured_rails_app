@@ -3,7 +3,7 @@ This repo is an approach to architect rails app into a more enterprise way
 
 ### Architect
 - The architecture is inspired by [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
-- Using common pattern in rails like: `Service Object`, `Form Object`, `Policy`, `Presenter`
+- Using common pattern in rails like: `Service Object`, `Form Object`, `Policy`, `Presenter`.
 - Components:
     1. `View` using React.js
     2. `Controller` does nothing than delegate each action to `Service` (automatically). Controller will discover appropriate service
@@ -72,6 +72,6 @@ This repo is an approach to architect rails app into a more enterprise way
         ```
 
 ### Todo
-[ ] Add sample for CQSR (Comman Query Separate Responsibility)
-[ ] Add multiple steps create a model
-[ ] Add more complex use cases
+- [ ] Add sample for CQSR (Comman Query Separate Responsibility)
+- [ ] Add multiple steps create a model
+- [ ] Add more complex use cases
