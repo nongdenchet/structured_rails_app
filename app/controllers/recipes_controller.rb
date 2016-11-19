@@ -4,6 +4,7 @@ class RecipesController < ApplicationController
   end
 
   def index
+    run Recipes::Index.new(params, current_user)
   end
 
   def create

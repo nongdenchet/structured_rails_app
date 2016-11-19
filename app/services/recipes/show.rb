@@ -1,12 +1,8 @@
 module Recipes
   class Show < Service
     def process
-      Recipe.find(params[:id])
-    end
-
-    private
-    def serializer
-      RecipeSerializer
+      recipe = Recipe.find(params[:id])
+      Recipes::DetailSerializer.new(recipe)
     end
   end
 end

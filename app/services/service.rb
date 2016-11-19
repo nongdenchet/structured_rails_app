@@ -8,7 +8,9 @@ class Service
 
   def execute
     begin
-      serializer.new(process)
+      authenticate!
+      authorize!
+      process
     rescue ActiveRecord::RecordNotFound => _
       raise RecordNotFound
     end
@@ -19,25 +21,31 @@ class Service
   end
 
   protected
-  def serializer
-    raise 'This method must be implemented'
+  def policy
+    nil
   end
 
-  def policy
-    raise 'This method must be implemented'
+  def require_authen?
+    false
   end
 
   private
-  def authenticated?
-    user != nil
+  def authenticate!
+    if require_authen? && user == nil
+      raise Unauthorized
+    end
   end
 
-  def authorize?
-    policy.send(action, user)
+  def authorize!
+    if policy
+      raise PermissionDenied unless policy.send(action, user)
+    end
   end
 
-  def authorize_record?(record)
-    policy.send(action, user, record)
+  def authorize_record!(record)
+    if policy
+      raise PermissionDenied unless policy.send(action, user, record)
+    end
   end
 
   def action

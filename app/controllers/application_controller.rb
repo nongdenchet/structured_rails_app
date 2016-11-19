@@ -5,9 +5,16 @@ class ApplicationController < ActionController::Base
 
   def run(service)
     begin
-      render json: service.execute.to_json
+      render_response(service.execute)
     rescue StandardError => error
-      render json: error.to_json
+      render_response(error)
+    end
+  end
+
+  private
+  def render_response(data)
+    respond_to do |format|
+      format.json { render json: data.to_json }
     end
   end
 end

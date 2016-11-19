@@ -8,7 +8,6 @@ RSpec.describe RecipesController, type: :controller do
 
     it 'return recipe' do
       get :show, id: recipe.id, format: :json
-      expect(json_response).not_to be_nil
       expect(json_response['id']).to eq(recipe.id)
       expect(json_response['title']).to eq(recipe.title)
       expect(json_response['user']['id']).to eq(user.id)
@@ -18,6 +17,23 @@ RSpec.describe RecipesController, type: :controller do
       get :show, id: 1, format: :json
       expect(json_response['status']).to eq(404)
       expect(json_response['code']).to eq('NOT_FOUND')
+    end
+  end
+
+  describe 'GET #index' do
+    let(:user) { create(:user) }
+
+    it 'return recipes' do
+      3.times { create(:recipe, user: user) }
+      sign_in user
+      get :index, format: :json
+      expect(json_response.length).to eq(3)
+    end
+
+    it 'return 401' do
+      get :index, format: :json
+      expect(json_response['status']).to eq(401)
+      expect(json_response['code']).to eq('UNAUTHORIZED')
     end
   end
 end
