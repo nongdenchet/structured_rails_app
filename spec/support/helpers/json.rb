@@ -5,7 +5,7 @@ module Helpers
     end
 
     def json_response_error
-      JSON.parse(@response.body)['error']
+      JSON.parse(@response.body)['errors']
     end
   end
 end
