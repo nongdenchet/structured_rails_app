@@ -14,4 +14,5 @@ if ENV['COVERAGE']
       !(src.filename =~ /^#{SimpleCov.root}/) unless src.filename =~ /app/
     end
   end
+  Coveralls.wear!
 end

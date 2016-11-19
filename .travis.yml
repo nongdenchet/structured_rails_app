@@ -13,6 +13,5 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - "bundle exec rake db:create"
   - "bundle exec rake db:migrate"
-  - "bundle exec rake bower:install"
 sudo: true
 dist: trusty

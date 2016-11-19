@@ -1,4 +1,4 @@
-# Structured rails application [![Build Status](https://travis-ci.org/nongdenchet/structured_rails_app.svg?branch=master)](https://travis-ci.org/nongdenchet/structured_rails_app)
+# Structured rails application [![Build Status](https://travis-ci.org/nongdenchet/structured_rails_app.svg?branch=master)](https://travis-ci.org/nongdenchet/structured_rails_app) [![Coverage Status](https://coveralls.io/repos/github/nongdenchet/structured_rails_app/badge.svg?branch=master)](https://coveralls.io/github/nongdenchet/structured_rails_app?branch=master)
 This repo is an approach to architect rails app into a more enterprise way
 
 ### Setup

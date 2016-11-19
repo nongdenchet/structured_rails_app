@@ -18,7 +18,6 @@ gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
 gem 'devise', '~> 4.2.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'flat-ui-sass', github: 'wingrunr21/flat-ui-sass'
-gem 'coveralls', require: false
 gem 'mini_racer', platforms: :ruby
 gem 'capistrano-rails', group: :development
 gem 'rails_12factor', group: :production
