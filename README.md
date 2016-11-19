@@ -22,6 +22,25 @@ This repo is an approach to architect rails app into a more enterprise way
         ```
         will discover `Recipes::Show` service and call it, then return data as `json`
     3. `Service` (Use Case) will do `business logic` and call `CQRS` or `ActiveRecord` for data access
+    
+        For example:
+        ```ruby
+        module Recipes
+          class Index < Service
+            require_authen!
+        
+            def process
+              recipes = user.recipes
+              recipes.map { |recipe| serialize(recipe) }
+            end
+        
+            private
+            def serialize(recipe)
+              Recipes::ShortSerializer.new(recipe)
+            end
+          end
+        end
+        ```
     4. `Model` include only fields and assocications.
         
         For example:
