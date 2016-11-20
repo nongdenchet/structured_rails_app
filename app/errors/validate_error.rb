@@ -1,11 +1,13 @@
 class ValidateError < BaseError
-  attr_reader :errors
-
-  def initialize(errors)
-    @errors = errors
+  def initialize(error = [])
+    @error = error
   end
 
-  def to_json
-    {errors: errors}
+  def status
+    422
+  end
+
+  def code
+    'UNPROCESSABLE ENTITY'
   end
 end

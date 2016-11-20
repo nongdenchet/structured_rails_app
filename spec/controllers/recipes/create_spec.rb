@@ -12,12 +12,13 @@ RSpec.describe V1::RecipesController, type: :controller do
       }.to change(Recipe, :count).by(1)
       expect(json_response['title']).to eq(recipe_attrs[:title])
       expect(json_response['description']).to eq(recipe_attrs[:description])
+      expect(Recipe.last.status).to eq(Status::INGREDIENT)
     end
 
     it 'return errors' do
       sign_in user
       post :create, recipe: {title: ''}, format: :json
-      expect(json_response_error.length).to eq(6)
+      expect(json_response_error['message'].length).to eq(6)
     end
 
     it 'return 401' do

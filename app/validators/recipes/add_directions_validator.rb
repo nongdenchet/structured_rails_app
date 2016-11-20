@@ -5,7 +5,8 @@ module Recipes
     validates :directions, empty_array: true
 
     def self.require_params(params)
-      params.permit(:directions)
+      params.permit!
+      params.slice(:directions)
     end
   end
 end
