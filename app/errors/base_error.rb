@@ -2,11 +2,11 @@ class BaseError < StandardError
   attr_reader :error
 
   def code
-    raise 'This method must be implemented'
+    raise NotImplementedError
   end
 
   def status
-    raise 'This method must be implemented'
+    raise NotImplementedError
   end
 
   def to_json

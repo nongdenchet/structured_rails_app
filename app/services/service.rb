@@ -32,6 +32,6 @@ class Service
   end
 
   def process
-    raise 'This method must be implemented'
+    raise NotImplementedError
   end
 end

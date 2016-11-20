@@ -6,24 +6,24 @@ class ApplicationController < ActionController::Base
 
   def execute
     begin
-      render_response(service.execute)
+      render_response(find_and_create_service.execute)
     rescue StandardError => error
       render_response(error)
     end
   end
 
   private
-  def service
+  def find_and_create_service
     clazz = "#{find_module}::#{find_action}".constantize
     clazz.new(params, current_user)
   end
 
   def find_module
-    StringUtils.capitalize_first(controller_name)
+    controller_name.camelize
   end
 
   def find_action
-    StringUtils.capitalize_first(action_name)
+    action_name.camelize
   end
 
   def render_response(data)
