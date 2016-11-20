@@ -23,7 +23,7 @@ This repo is an approach to architect rails app into a more enterprise way
         end
         ```
         will discover `Recipes::Show` service and call it, then return data as `json`
-    3. `Service` (Use Case) will do `business logic` and call `CQRS` or `ActiveRecord` for data access
+    3. `Service` (Use Case) will do `business logic` and call `CQSR` or `ActiveRecord` for data access
     
         For example:
         ```ruby
@@ -103,6 +103,7 @@ This repo is an approach to architect rails app into a more enterprise way
         ```
 
 ### Todo
-- [ ] Add sample for CQSR (Comman Query Separate Responsibility)
+- [ ] Add sample for CQRS (Comman Query Responsibility Separate)
 - [ ] Add multiple steps create a model
 - [ ] Add more complex use cases
+- [ ] Add support for multiple view type (html and js)
