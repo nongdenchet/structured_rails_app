@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe V1::RecipesController, type: :controller do
   let(:user) { create(:user) }
   let(:other_user) { create(:other_user) }
-  let(:recipe_attrs) { attributes_for(:recipe) }
+  let(:recipe_attrs) {
+    attributes_for(:recipe).merge(ingredients: %w(1 2), directions: %w(1 2))
+  }
+  let(:invalid_recipe_attrs) { attributes_for(:recipe) }
   let(:recipe) { create(:recipe, user: user) }
 
   describe 'PUT #update' do
@@ -16,8 +19,14 @@ RSpec.describe V1::RecipesController, type: :controller do
 
     it 'return errors' do
       sign_in user
+      put :update, id: recipe.id, recipe: invalid_recipe_attrs, format: :json
+      expect(json_response_error.length).to eq(2)
+    end
+
+    it 'return errors' do
+      sign_in user
       put :update, id: recipe.id, recipe: {title: ''}, format: :json
-      expect(json_response_error.length).to eq(6)
+      expect(json_response_error.length).to eq(8)
     end
 
     it 'return 401' do

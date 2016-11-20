@@ -1,6 +1,6 @@
 module Recipes
   class DetailSerializer < ActiveModel::Serializer
-    attributes :id, :title, :description, :image, :prepare_time, :cook_time, :ready_time
+    attributes :id, :title, :description, :image, :prepare_time, :cook_time, :ready_time, :status
 
     belongs_to :user, serializer: Users::ShortSerializer
     has_many :ingredients, serializer: Ingredients::Serializer

@@ -9,10 +9,6 @@ module Recipes
     end
 
     private
-    def validate!
-      RecipeValidator.new(recipe_params).validate!
-    end
-
     def recipe_params
       Recipes::Params.get(params)
     end

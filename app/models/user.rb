@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   devise :database_authenticatable, :registerable, :recoverable,
-         :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable, :confirmable
 
   has_many :recipes, dependent: :destroy
 

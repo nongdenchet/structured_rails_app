@@ -1,7 +1,6 @@
 module Recipes
   class Destroy < Service
     require_authen!
-    with_policy RecipePolicy
 
     def process
       recipe = Recipe.find(params[:id])

@@ -1,7 +1,6 @@
 module Recipes
   class Update < Service
     require_authen!
-    with_policy RecipePolicy
 
     def process
       recipe = Recipe.find(params[:id])
@@ -12,10 +11,6 @@ module Recipes
     end
 
     private
-    def validate!
-      RecipeValidator.new(recipe_params).validate!
-    end
-
     def recipe_params
       Recipes::Params.get(params)
     end

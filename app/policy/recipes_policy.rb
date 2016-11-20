@@ -1,4 +1,4 @@
-class RecipePolicy
+class RecipesPolicy
   def self.destroy_record?(user, record)
     check_owner(user, record)
   end

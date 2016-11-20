@@ -12,6 +12,7 @@
 #  user_id      :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  status       :integer          default("0")
 #
 
 FactoryGirl.define do
@@ -21,6 +22,7 @@ FactoryGirl.define do
     prepare_time 5
     cook_time 10
     ready_time 5
+    status 3
     image { Helpers::Image.sample_image }
     user
   end

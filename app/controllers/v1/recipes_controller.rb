@@ -11,6 +11,12 @@ module V1
     def create
     end
 
+    def add_ingredients
+    end
+
+    def add_directions
+    end
+
     def update
     end
 

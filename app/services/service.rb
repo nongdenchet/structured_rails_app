@@ -1,6 +1,7 @@
 class Service
   include Support::Authen
   include Support::Policy
+  include Support::Validate
 
   attr_accessor :user, :params
 
@@ -12,6 +13,7 @@ class Service
   def execute
     begin
       authenticate!
+      authorize!
       process
     rescue ActiveRecord::RecordNotFound => _
       raise RecordNotFound
@@ -20,10 +22,10 @@ class Service
 
   private
   class << self
-    attr_accessor :policy, :require_authen
+    attr_accessor :require_authorize, :require_authen
 
-    def with_policy(policy)
-      self.policy = policy
+    def require_authorize!
+      self.require_authorize = true
     end
 
     def require_authen!

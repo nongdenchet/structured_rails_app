@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   namespace :v1 do
     mount_devise_token_auth_for 'User', at: 'users'
 
-    resources :recipes, except: [:new, :edit]
+    resources :recipes, except: [:new, :edit] do
+      member do
+        post :add_ingredients
+        post :add_directions
+      end
+    end
   end
 end
