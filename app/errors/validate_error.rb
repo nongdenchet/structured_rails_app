@@ -1,4 +1,4 @@
-class ValidateError < StandardError
+class ValidateError < BaseError
   attr_reader :errors
 
   def initialize(errors)

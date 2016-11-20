@@ -1,13 +1,12 @@
 class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
 
-  protect_from_forgery with: :exception
-  before_action :execute
+  protect_from_forgery unless: -> { request.format.json? }
 
   def execute
     begin
       render_response(find_and_create_service.execute)
-    rescue StandardError => error
+    rescue BaseError => error
       render_response(error)
     end
   end

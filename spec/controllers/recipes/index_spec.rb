@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RecipesController, type: :controller do
+RSpec.describe V1::RecipesController, type: :controller do
   let(:user) { create(:user) }
   let(:recipe) { create(:recipe, user: user) }
 

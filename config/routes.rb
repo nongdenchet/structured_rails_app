@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
   root to: 'home#index'
+  devise_for :users
 
-  # namespace :api do
-  #   scope :v1 do
-  #     mount_devise_token_auth_for 'User', at: 'users'
-  #
-  #     resources :recipes
-  #   end
-  # end
+  namespace :v1 do
+    mount_devise_token_auth_for 'User', at: 'users'
 
-  mount_devise_token_auth_for 'User', at: 'users'
-  resources :recipes
+    resources :recipes, except: [:new, :edit]
+  end
 end

@@ -18,12 +18,14 @@ This repo is an approach to architect rails app into a more enterprise way
         For example:
         ```ruby
         class RecipesController < ApplicationController
+          before_action :execute  
+        
           def show
           end
         end
         ```
-        will discover `Recipes::Show` service and call it, then return data as `json`
-    3. `Service` (Use Case) will do `business logic` and call `CQSR` or `ActiveRecord` for data access. Wee can get rid off all `before_action` from `Controller` and delegate them to `Service` for example using `require_authen!`
+        `before_action :execute` will discover `Recipes::Show` service and call it, then return data as `json`
+    3. `Service` (Use Case) will do `business logic` and call `CQSR` or `ActiveRecord` for data access. We can get rid off many `before_action` from `Controller` and delegate them to `Service` for example using `require_authen!`
     
         For example:
         ```ruby

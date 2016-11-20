@@ -1,8 +1,13 @@
 module Recipes
   class Show < Service
     def process
-      recipe = Recipe.find(params[:id])
-      Recipes::DetailSerializer.new(recipe)
+      Recipes::DetailSerializer.new(query_recipe)
+    end
+
+    private
+    def query_recipe
+      Recipe.includes(:ingredients, :directions)
+        .find(params[:id])
     end
   end
 end
