@@ -15,13 +15,11 @@ module Support
     end
 
     def action
-      class_name = StringUtils.underscore(self.class.to_s)
-      class_name.split('/').last + '?'
+      self.class.to_s.underscore.split('/').last + '?'
     end
 
     def action_record
-      class_name = StringUtils.underscore(self.class.to_s)
-      class_name.split('/').last + '_record?'
+      self.class.to_s.underscore.split('/').last + '_record?'
     end
   end
 end
