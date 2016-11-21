@@ -16,10 +16,14 @@ module Recipes
 
     def do_transaction
       ActiveRecord::Base.transaction do
-        params[:ingredients].each do |content|
-          recipe.ingredients.create!(content: content)
-        end
+        Ingredient.import(build_ingredients)
         recipe.update!(status: Recipes::Status::DIRECTION)
+      end
+    end
+
+    def build_ingredients
+      params[:ingredients].reduce([]) do |result, content|
+        result << recipe.ingredients.build(content: content)
       end
     end
   end
