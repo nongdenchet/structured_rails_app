@@ -19,6 +19,7 @@ RSpec.describe V1::RecipesController, type: :controller do
       sign_in user
       post :create, recipe: {title: ''}, format: :json
       expect(json_response_error['message'].length).to eq(6)
+      assert_422
     end
 
     it 'return 401' do

@@ -23,12 +23,14 @@ RSpec.describe V1::RecipesController, type: :controller do
       sign_in user
       put :update, id: recipe.id, recipe: invalid_recipe_attrs, format: :json
       expect(json_response_error['message'].length).to eq(2)
+      assert_422
     end
 
     it 'return errors' do
       sign_in user
       put :update, id: recipe.id, recipe: {title: ''}, format: :json
       expect(json_response_error['message'].length).to eq(8)
+      assert_422
     end
 
     it 'return 401' do

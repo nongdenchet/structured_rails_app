@@ -18,6 +18,7 @@ RSpec.describe V1::RecipesController, type: :controller do
       sign_in user
       post :add_directions, directions: [], id: recipe.id, format: :json
       expect(json_response_error['message'].length).to eq(1)
+      assert_422
     end
 
     it 'return 401' do

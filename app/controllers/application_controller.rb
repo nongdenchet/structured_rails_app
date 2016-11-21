@@ -27,7 +27,15 @@ class ApplicationController < ActionController::Base
 
   def render_response(data)
     respond_to do |format|
-      format.json { render json: data.to_json }
+      format.json { render_json data }
+    end
+  end
+
+  def render_json(data)
+    if data.kind_of?(BaseError)
+      render json: data.to_json, status: data.status
+    else
+      render json: data.to_json
     end
   end
 end

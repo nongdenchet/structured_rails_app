@@ -9,18 +9,26 @@ module Helpers
     end
 
     def assert_403
-      expect(json_response_error['status']).to eq(403)
-      expect(json_response_error['code']).to eq('PERMISSION_DENIED')
+      assert_error(403, 'PERMISSION_DENIED')
     end
 
     def assert_401
-      expect(json_response_error['status']).to eq(401)
-      expect(json_response_error['code']).to eq('UNAUTHORIZED')
+      assert_error(401, 'UNAUTHORIZED')
     end
 
     def assert_404
-      expect(json_response_error['status']).to eq(404)
-      expect(json_response_error['code']).to eq('NOT_FOUND')
+      assert_error(404, 'NOT_FOUND')
+    end
+
+    def assert_422
+      assert_error(422, 'UNPROCESSABLE ENTITY')
+    end
+
+    private
+    def assert_error(status, code)
+      expect(json_response_error['status']).to eq(status)
+      expect(json_response_error['code']).to eq(code)
+      expect(response.status).to eq(status)
     end
   end
 end
