@@ -19,7 +19,7 @@ module Recipes
         params[:ingredients].each do |content|
           recipe.ingredients.create!(content: content)
         end
-        recipe.update!(status: Status::DIRECTION)
+        recipe.update!(status: Recipes::Status::DIRECTION)
       end
     end
   end
