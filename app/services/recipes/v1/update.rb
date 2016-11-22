@@ -36,14 +36,7 @@ module Recipes
       end
 
       def recipe_params
-        params.require(:recipe).permit(
-          :title,
-          :description,
-          :image,
-          :prepare_time,
-          :cook_time,
-          :ready_time
-        )
+        Recipes::Params.get(params)
       end
     end
   end
