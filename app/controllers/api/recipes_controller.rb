@@ -1,4 +1,4 @@
-module V1
+module Api
   class RecipesController < ApplicationController
     before_action :execute
 
