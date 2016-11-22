@@ -15,7 +15,7 @@ RSpec.describe Api::RecipesController, type: :controller do
       post :add_ingredients, ingredients: %w(1 2), id: recipe.id, format: :json
       recipe.reload
       expect(recipe.ingredients.map(&:content)).to match_array %w(1 2)
-      expect(recipe.status).to eq(Status::DIRECTION)
+      expect(recipe.status).to eq(Recipes::Status::DIRECTION)
     end
 
     it 'return errors' do

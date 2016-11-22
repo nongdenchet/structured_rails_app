@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Recipes::CreateValidator, type: :model do
+RSpec.describe Recipes::V1::CreateValidator, type: :model do
   it { is_expected.to validate_presence_of(:title) }
   it { is_expected.to validate_presence_of(:image) }
   it { is_expected.to validate_presence_of(:description) }

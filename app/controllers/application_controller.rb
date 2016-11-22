@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_and_create_service
-    clazz = "#{find_version}::#{find_module}::#{find_action}".constantize
+    clazz = "#{find_module}::#{find_version}::#{find_action}".constantize
     clazz.new(params, current_user)
   end
 

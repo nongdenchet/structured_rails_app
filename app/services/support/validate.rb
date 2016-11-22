@@ -1,12 +1,7 @@
 module Support
   module Validate
     def validator
-      validator_class.constantize
-    end
-
-    def validator_class
-      class_names = self.class.to_s.split('::')
-      "#{class_names.second}::#{class_names.last}Validator"
+      "#{self.class.to_s}Validator".constantize
     end
 
     def validate!(_params = params)

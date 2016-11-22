@@ -16,7 +16,7 @@ RSpec.describe Api::RecipesController, type: :controller do
       }.to change(Recipe, :count).by(1)
       expect(json_response['title']).to eq(recipe_attrs[:title])
       expect(json_response['description']).to eq(recipe_attrs[:description])
-      expect(Recipe.last.status).to eq(Status::INGREDIENT)
+      expect(Recipe.last.status).to eq(Recipes::Status::INGREDIENT)
     end
 
     it 'return errors' do
