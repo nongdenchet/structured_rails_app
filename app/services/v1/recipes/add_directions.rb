@@ -1,4 +1,4 @@
-module Recipes
+module V1::Recipes
   class AddDirections < Service
     require_authen!
 
@@ -17,7 +17,7 @@ module Recipes
     def do_transaction
       ActiveRecord::Base.transaction do
         Direction.import(build_directions)
-        recipe.update!(status: Recipes::Status::DONE)
+        recipe.update!(status: Status::DONE)
       end
     end
 

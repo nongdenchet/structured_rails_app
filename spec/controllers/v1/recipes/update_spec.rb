@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe V1::RecipesController, type: :controller do
+RSpec.describe Api::RecipesController, type: :controller do
   let(:user) { create(:user) }
   let(:other_user) { create(:other_user) }
   let(:recipe_attrs) {
@@ -8,6 +8,10 @@ RSpec.describe V1::RecipesController, type: :controller do
   }
   let(:invalid_recipe_attrs) { attributes_for(:recipe) }
   let(:recipe) { create(:recipe, user: user) }
+
+  before(:each) do
+    set_version('v1')
+  end
 
   describe 'PUT #update' do
     it 'create recipe' do

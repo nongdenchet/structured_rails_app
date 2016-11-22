@@ -1,9 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe V1::RecipesController, type: :controller do
+RSpec.describe Api::RecipesController, type: :controller do
   let(:user) { create(:user) }
   let(:other_user) { create(:other_user) }
   let(:recipe) { create(:recipe, user: user) }
+
+  before(:each) do
+    set_version('v1')
+  end
 
   describe 'DELETE #destroy' do
     it 'delete recipe' do

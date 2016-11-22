@@ -1,4 +1,4 @@
-module Recipes
+module V1::Recipes
   class Index < Service
     require_authen!
 

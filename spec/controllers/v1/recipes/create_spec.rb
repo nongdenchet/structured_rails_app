@@ -1,8 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe V1::RecipesController, type: :controller do
+RSpec.describe Api::RecipesController, type: :controller do
   let(:user) { create(:user) }
   let(:recipe_attrs) { attributes_for(:recipe) }
+
+  before(:each) do
+    set_version('v1')
+  end
 
   describe 'POST #create' do
     it 'create recipe' do
@@ -12,7 +16,7 @@ RSpec.describe V1::RecipesController, type: :controller do
       }.to change(Recipe, :count).by(1)
       expect(json_response['title']).to eq(recipe_attrs[:title])
       expect(json_response['description']).to eq(recipe_attrs[:description])
-      expect(Recipe.last.status).to eq(Recipes::Status::INGREDIENT)
+      expect(Recipe.last.status).to eq(Status::INGREDIENT)
     end
 
     it 'return errors' do

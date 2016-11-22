@@ -1,9 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe V1::RecipesController, type: :controller do
+RSpec.describe Api::RecipesController, type: :controller do
   let(:user) { create(:user) }
   let(:other_user) { create(:other_user) }
   let(:recipe) { create(:recipe, user: user) }
+
+  before(:each) do
+    set_version('v1')
+  end
 
   describe 'POST #add_directions' do
     it 'create recipe' do
@@ -11,7 +15,7 @@ RSpec.describe V1::RecipesController, type: :controller do
       post :add_directions, directions: %w(1 2), id: recipe.id, format: :json
       recipe.reload
       expect(recipe.directions.map(&:content)).to match_array %w(1 2)
-      expect(recipe.status).to eq(Recipes::Status::DONE)
+      expect(recipe.status).to eq(Status::DONE)
     end
 
     it 'return errors' do

@@ -1,7 +1,7 @@
 module Support
   module Policy
     def policy
-      "#{self.class.to_s.split('::').first}Policy".constantize
+      "#{self.class.to_s.split('::').second}Policy".constantize
     end
 
     def authorize!

@@ -1,4 +1,4 @@
-module Recipes
+module V1::Recipes
   class AddIngredients < Service
     require_authen!
 
@@ -17,7 +17,7 @@ module Recipes
     def do_transaction
       ActiveRecord::Base.transaction do
         Ingredient.import(build_ingredients)
-        recipe.update!(status: Recipes::Status::DIRECTION)
+        recipe.update!(status: Status::DIRECTION)
       end
     end
 

@@ -1,4 +1,4 @@
-module Recipes
+module V1::Recipes
   class Show < Service
     def process
       Recipes::DetailSerializer.new(query_recipe)

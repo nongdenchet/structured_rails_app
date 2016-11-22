@@ -1,4 +1,4 @@
-module Recipes
+module V1::Recipes
   class Destroy < Service
     require_authen!
 

@@ -1,4 +1,4 @@
-module Recipes
+module V1::Recipes
   class Update < Service
     require_authen!
 
@@ -35,7 +35,14 @@ module Recipes
     end
 
     def recipe_params
-      Recipes::Params.get(params)
+      params.require(:recipe).permit(
+        :title,
+        :description,
+        :image,
+        :prepare_time,
+        :cook_time,
+        :ready_time
+      )
     end
   end
 end
