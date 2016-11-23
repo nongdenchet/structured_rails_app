@@ -7,7 +7,7 @@ module Recipes
         authorize_record!(recipe)
         validate!
         do_transaction
-        Recipes::ShortSerializer.new(recipe)
+        Recipes::DetailSerializer.new(recipe)
       end
 
       private
