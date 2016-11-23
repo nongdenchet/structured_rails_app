@@ -23,4 +23,5 @@ class Recipe < ApplicationRecord
   has_many :directions, dependent: :destroy
   has_many :completes, dependent: :destroy
   has_many :complete_users, through: :completes, source: :user
+  has_many :reviews, dependent: :destroy
 end
