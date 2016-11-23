@@ -16,7 +16,7 @@ class Service
       authorize!
       process
     rescue ActiveRecord::RecordNotFound => _
-      raise RecordNotFound
+      raise NotFound
     end
   end
 

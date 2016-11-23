@@ -1,4 +1,4 @@
-class RecordNotFound < BaseError
+class NotFound < BaseError
   def initialize(error = 'Record not found')
     @error = error
   end

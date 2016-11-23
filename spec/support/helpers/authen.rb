@@ -4,5 +4,9 @@ module Helpers
       auth_headers = user.create_new_auth_token
       @request.headers.merge!(auth_headers)
     end
+
+    def set_version(version = 'v1')
+      @request.headers.merge!(version: version)
+    end
   end
 end

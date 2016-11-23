@@ -1,8 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Api::RecipesController, type: :controller do
+RSpec.describe Api::V1::RecipesController, type: :controller do
   let(:user) { create(:user) }
   let(:recipe) { create(:recipe, user: user) }
+
+  before(:each) do
+    set_version('v1')
+  end
 
   describe 'GET #index' do
     it 'return recipes' do

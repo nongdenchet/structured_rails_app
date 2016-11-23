@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Recipes::AddDirectionsValidator, type: :model do
+RSpec.describe Recipes::V1::AddDirectionsValidator, type: :model do
   it 'return false when empty params' do
     expect(check_valid?({})).to eq(false)
   end
@@ -18,6 +18,6 @@ RSpec.describe Recipes::AddDirectionsValidator, type: :model do
   end
 
   def check_valid?(params)
-    Recipes::AddDirectionsValidator.new(params).valid?
+    Recipes::V1::AddDirectionsValidator.new(params).valid?
   end
 end
