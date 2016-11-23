@@ -31,6 +31,30 @@ RSpec.describe Api::V1::RecipesController, type: :controller do
       expect(json_response['complete_users'].length).to eq(2)
     end
 
+    it 'return complete status owner' do
+      sign_in user
+      get :show, id: recipe.id, format: :json
+      expect(json_response['complete_status']).to eq(Completes::Status::OWNER)
+    end
+
+    it 'return complete status complete' do
+      create(:complete, recipe: recipe, user: user_1)
+      sign_in user_1
+      get :show, id: recipe.id, format: :json
+      expect(json_response['complete_status']).to eq(Completes::Status::COMPLETED)
+    end
+
+    it 'return complete status incomplete' do
+      sign_in user_1
+      get :show, id: recipe.id, format: :json
+      expect(json_response['complete_status']).to eq(Completes::Status::INCOMPLETE)
+    end
+
+    it 'return complete status incomplete' do
+      get :show, id: recipe.id, format: :json
+      expect(json_response['complete_status']).to eq(Completes::Status::INCOMPLETE)
+    end
+
     it 'not return incomplete recipe' do
       get :show, id: recipe_1.id, format: :json
       assert_404
