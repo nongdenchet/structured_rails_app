@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :api do
-    mount_devise_token_auth_for 'User', at: 'users'
+    scope module: :v1, constraints: ApiConstraint.new(version: :v1) do
+      mount_devise_token_auth_for 'User', at: 'users'
 
-    resources :recipes, except: [:new, :edit] do
-      member do
-        post :add_ingredients
-        post :add_directions
+      resources :recipes, except: [:new, :edit] do
+        member do
+          post :add_ingredients
+          post :add_directions
+        end
       end
     end
   end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::RecipesController, type: :controller do
+RSpec.describe Api::V1::RecipesController, type: :controller do
   let(:user) { create(:user) }
   let(:recipe_attrs) { attributes_for(:recipe) }
 
