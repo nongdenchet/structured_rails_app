@@ -6,6 +6,6 @@ class ApiConstraint
   end
 
   def matches?(request)
-    request.headers['VERSION'] == version
+    request.headers['VERSION'].try(:include?, version)
   end
 end

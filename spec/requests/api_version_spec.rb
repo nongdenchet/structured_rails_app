@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'API version', type: :request do
   it 'return not found version' do
     expect {
-      get '/api/recipes/index', nil, {version: 1, accept: 'application/json'}
+      get '/api/recipes/index', nil, {version: 200, accept: 'application/json'}
     }.to raise_error ActionController::RoutingError
   end
 
