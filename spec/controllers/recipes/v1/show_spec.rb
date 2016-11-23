@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::RecipesController, type: :controller do
   let(:user) { create(:user) }
-  let(:recipe) { create(:recipe, user: user) }
+  let(:user_1) { create(:user, email: 'email1@gmail.com') }
+  let(:user_2) { create(:user, email: 'email2@gmail.com') }
+  let(:recipe) { create(:recipe, user: user, status: Recipes::Status::DONE) }
+  let(:recipe_1) { create(:recipe, user: user, status: Recipes::Status::INGREDIENT) }
+  let(:recipe_2) { create(:recipe, user: user, status: Recipes::Status::DIRECTION) }
 
   before(:each) do
     set_version('v1')
@@ -18,6 +22,23 @@ RSpec.describe Api::V1::RecipesController, type: :controller do
       expect(json_response['user']['id']).to eq(user.id)
       expect(json_response['directions'].length).to eq(2)
       expect(json_response['ingredients'].length).to eq(2)
+    end
+
+    it 'return recipe with complete users' do
+      create(:complete, recipe: recipe, user: user_1)
+      create(:complete, recipe: recipe, user: user_2)
+      get :show, id: recipe.id, format: :json
+      expect(json_response['complete_users'].length).to eq(2)
+    end
+
+    it 'not return incomplete recipe' do
+      get :show, id: recipe_1.id, format: :json
+      assert_404
+    end
+
+    it 'not return incomplete recipe' do
+      get :show, id: recipe_2.id, format: :json
+      assert_404
     end
 
     it 'return error 404' do

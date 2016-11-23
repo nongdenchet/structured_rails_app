@@ -21,4 +21,6 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :ingredients, dependent: :destroy
   has_many :directions, dependent: :destroy
+  has_many :completes, dependent: :destroy
+  has_many :complete_users, through: :completes, source: :user
 end

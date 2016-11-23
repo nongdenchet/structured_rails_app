@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, :confirmable
 
   has_many :recipes, dependent: :destroy
+  has_many :completes, dependent: :destroy
+  has_many :complete_recipes, through: :completes, source: :recipe
 
   def confirmation_required?
     false

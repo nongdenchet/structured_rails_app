@@ -10,8 +10,8 @@ module Support
       end
     end
 
-    def authorize_record!(record)
-      raise PermissionDenied unless policy.send(action_record, user, record)
+    def authorize_record!(record, error = PermissionDenied)
+      raise error unless policy.send(action_record, user, record)
     end
 
     def action

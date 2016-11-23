@@ -9,6 +9,9 @@ module Api
       def index
       end
 
+      def completed
+      end
+
       def create
       end
 

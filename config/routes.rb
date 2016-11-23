@@ -11,7 +11,13 @@ Rails.application.routes.draw do
           post :add_ingredients
           post :add_directions
         end
+
+        collection do
+          get :completed
+        end
       end
+
+      resource :completes, only: [:create, :destroy]
     end
   end
 end

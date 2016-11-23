@@ -30,5 +30,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it { is_expected.to have_many(:recipes).dependent(:destroy) }
+  describe 'association' do
+    it { is_expected.to have_many(:recipes).dependent(:destroy) }
+    it { is_expected.to have_many(:completes).dependent(:destroy) }
+    it { is_expected.to have_many(:complete_recipes).through(:completes).source(:recipe) }
+  end
 end

@@ -5,5 +5,6 @@ module Recipes
     belongs_to :user, serializer: Users::ShortSerializer
     has_many :ingredients, serializer: Ingredients::Serializer
     has_many :directions, serializer: Directions::Serializer
+    has_many :complete_users, serializer: Users::ShortSerializer
   end
 end

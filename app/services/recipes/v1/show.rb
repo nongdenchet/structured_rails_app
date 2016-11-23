@@ -2,13 +2,14 @@ module Recipes
   module V1
     class Show < Service
       def process
-        Recipes::DetailSerializer.new(query_recipe)
+        authorize_record!(recipe, NotFound)
+        Recipes::DetailSerializer.new(recipe)
       end
 
       private
-      def query_recipe
-        Recipe.includes(:ingredients, :directions)
-          .find(params[:id])
+      def recipe
+        @recipe ||= Recipe.includes(:ingredients, :directions, :complete_users)
+                      .find(params[:id])
       end
     end
   end
