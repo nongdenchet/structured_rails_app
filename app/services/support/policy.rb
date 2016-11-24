@@ -4,22 +4,12 @@ module Support
       "#{self.class.to_s.split('::').first}Policy".constantize
     end
 
-    def authorize!
-      if self.class.require_authorize
-        raise PermissionDenied unless policy.send(action, user)
-      end
-    end
-
-    def authorize_record!(record, error = PermissionDenied)
-      raise error unless policy.send(action_record, user, record)
+    def authorize!(record, error = PermissionDenied)
+      raise error unless policy.send(action, user, record)
     end
 
     def action
       self.class.to_s.underscore.split('/').last + '?'
-    end
-
-    def action_record
-      self.class.to_s.underscore.split('/').last + '_record?'
     end
   end
 end

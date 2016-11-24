@@ -4,7 +4,7 @@ module Recipes
       require_authen!
 
       def process
-        authorize_record!(recipe)
+        authorize!(recipe)
         validate!
         do_transaction
         Recipes::Serializer.new(recipe)

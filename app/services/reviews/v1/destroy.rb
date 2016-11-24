@@ -4,7 +4,7 @@ module Reviews
       require_authen!
 
       def process
-        authorize_record!(review)
+        authorize!(review)
         review.destroy!
         {success: true}
       end

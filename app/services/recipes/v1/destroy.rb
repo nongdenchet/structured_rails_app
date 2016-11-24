@@ -5,7 +5,7 @@ module Recipes
 
       def process
         recipe = Recipe.find(params[:id])
-        authorize_record!(recipe)
+        authorize!(recipe)
         recipe.destroy!
         {success: true}
       end

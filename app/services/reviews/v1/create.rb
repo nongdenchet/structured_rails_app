@@ -4,7 +4,7 @@ module Reviews
       require_authen!
 
       def process
-        authorize_record!(recipe, Reviews::OwnerError)
+        authorize!(recipe, Reviews::OwnerError)
         check_has_reviewed!
         validate!
         review = user.reviews.create(review_params)

@@ -1,21 +1,21 @@
 class RecipesPolicy
-  def self.destroy_record?(user, record)
+  def self.destroy?(user, record)
     check_owner(user, record)
   end
 
-  def self.update_record?(user, record)
+  def self.update?(user, record)
     check_owner(user, record)
   end
 
-  def self.add_ingredients_record?(user, record)
+  def self.add_ingredients?(user, record)
     check_owner(user, record)
   end
 
-  def self.add_directions_record?(user, record)
+  def self.add_directions?(user, record)
     check_owner(user, record)
   end
 
-  def self.show_record?(_, record)
+  def self.show?(_, record)
     record.status >= Recipes::Status::DONE
   end
 

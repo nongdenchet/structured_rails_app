@@ -13,7 +13,6 @@ class Service
   def execute
     begin
       authenticate!
-      authorize!
       process
     rescue ActiveRecord::RecordNotFound => _
       raise NotFound
@@ -22,11 +21,7 @@ class Service
 
   private
   class << self
-    attr_accessor :require_authorize, :require_authen
-
-    def require_authorize!
-      self.require_authorize = true
-    end
+    attr_accessor :require_authen
 
     def require_authen!
       self.require_authen = true

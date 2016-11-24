@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :admins
   root to: 'home#index'
+
+  namespace :admins do
+    get 'dashboard/index'
+  end
 
   namespace :api do
     scope module: :v1, constraints: ApiConstraint.new(version: :v1) do
