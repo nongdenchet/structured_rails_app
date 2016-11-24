@@ -24,6 +24,21 @@ RSpec.describe Api::V1::RecipesController, type: :controller do
       expect(json_response['ingredients'].length).to eq(2)
     end
 
+    it 'return statistic data' do
+      %w(rain1@gmail.com rain2@gmail.com).each_with_index do |email, index|
+        user = create(:user, email: email)
+        create(:complete, recipe: recipe, user: user)
+        create(:review, recipe: recipe, user: user, rating: index + 1)
+      end
+      get :show, id: recipe.id, format: :json
+      expect(json_response['id']).to eq(recipe.id)
+      expect(json_response['complete_count']).to eq(2)
+      expect(json_response['review_count']).to eq(2)
+      expect(json_response['average_rating']).to eq('1.5')
+      expect(json_response['reviews'].length).to eq(2)
+      expect(json_response['complete_users'].length).to eq(2)
+    end
+
     it 'return recipe with complete users' do
       create(:complete, recipe: recipe, user: user_1)
       create(:complete, recipe: recipe, user: user_2)
