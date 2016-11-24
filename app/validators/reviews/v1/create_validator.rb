@@ -4,7 +4,7 @@ module Reviews
       attr_accessor :recipe_id, :content, :rating
 
       validates :content, presence: true
-      validates :recipe_id, foreign_key: {target: Recipe}
+      validates :recipe_id, foreign_key: {class_name: Recipe}
       validates :rating, numericality: {only_integer: true,
                                         greater_than_or_equal_to: 1,
                                         less_than_or_equal_to: 5}

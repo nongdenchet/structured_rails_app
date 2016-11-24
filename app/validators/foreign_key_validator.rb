@@ -1,7 +1,7 @@
 class ForeignKeyValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     begin
-      options[:target].find(value)
+      options[:class_name].find(value)
     rescue ActiveRecord::RecordNotFound => _
       add_error(record, attribute)
     end
