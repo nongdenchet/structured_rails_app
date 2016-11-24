@@ -10,37 +10,79 @@ This repo is an approach to architect rails app into a more enterprise way
 
 ### Architect
 - The architecture is inspired by [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
-- Using common pattern in rails like: `Service Object`, `Form Object`, `Policy`, `Presenter`.
+- Using common pattern in rails like: `Service Object`, `Form Object`, `Policy`, `Query Object`.
 - Components:
-    1. `View` using React.js
-    2. `Controller` does nothing than delegate each action to `Service` (automatically). Controller will discover appropriate service
+    1. `Controller` does nothing than delegate each action to `Service` (automatically). Controller will discover appropriate service
         
         For example:
         ```ruby
         class RecipesController < ApplicationController
           before_action :execute  
         
-          def show
+          def create
           end
         end
         ```
         `before_action :execute` will discover `Recipes::Show` service and call it, then return data as `json`
-    3. `Service` (Use Case) will do `business logic` and call `CQSR` or `ActiveRecord` for data access. We can get rid off many `before_action` from `Controller` and delegate them to `Service` for example using `require_authen!`
+    2. `Service` (Use Case) will do `business logic` and call `Query` or `ActiveRecord` for data access. We can get rid off many `before_action` from `Controller` and delegate them to `Service` for example using `require_authen!`
     
         For example:
         ```ruby
         module Recipes
-          class Index < Service
-            require_authen!
+          module V1
+            class Create < Service
+              require_authen!
         
-            def process
-              recipes = user.recipes
-              recipes.map { |recipe| serialize(recipe) }
+              def process
+                validate!
+                recipe = user.recipes.create!(recipe_params)
+                Recipes::Serializer.new(recipe)
+              end
+        
+              private
+              def recipe_params
+                params.require(:recipe).permit(
+                  :title,
+                  :description,
+                  :image,
+                  :prepare_time,
+                  :cook_time,
+                  :ready_time
+                )
+              end
+            end
+          end
+        end
+        ```
+    3. `Query` to execute complicated SQL query.
+    
+        For example:
+        ```ruby
+        module Recipes
+          class DetailQuery
+            def execute
+              Recipe
+                .select('recipes.*, review_infos.average AS average_rating,
+                         review_infos.count AS review_count,
+                         complete_infos.count AS complete_count')
+                .joins("LEFT OUTER JOIN (#{review_infos.to_sql}) AS review_infos
+                        ON review_infos.recipe_id = recipes.id")
+                .joins("LEFT OUTER JOIN (#{complete_infos.to_sql}) AS complete_infos
+                        ON complete_infos.recipe_id = recipes.id")
             end
         
             private
-            def serialize(recipe)
-              Recipes::ShortSerializer.new(recipe)
+            def review_infos
+              Review
+                .select('recipe_id, COALESCE(AVG(reviews.rating), 0) AS average,
+                         COUNT(reviews.id) AS count')
+                .group('recipe_id')
+            end
+        
+            def complete_infos
+              Complete
+                .select('recipe_id, COUNT(completes.id) AS count')
+                .group('recipe_id')
             end
           end
         end
@@ -83,17 +125,12 @@ This repo is an approach to architect rails app into a more enterprise way
         
         For example:
         ```ruby
-        class RecipePolicy
-          def self.destroy_record?(user, record)
-            check_owner(user, record)
+        class ReviewsPolicy
+          def self.create?(user, record)
+            user.id != record.user_id
           end
         
-          def self.update_record?(user, record)
-            check_owner(user, record)
-          end
-        
-          private
-          def self.check_owner(user, record)
+          def self.destroy?(user, record)
             user.id == record.user_id
           end
         end
@@ -103,15 +140,12 @@ This repo is an approach to architect rails app into a more enterprise way
         For example:
         ```ruby
         module Recipes
-          class DetailSerializer < ActiveModel::Serializer
+          class Serializer < ActiveModel::Serializer
             attributes :id, :title, :description, :image, :prepare_time, :cook_time, :ready_time
         
             belongs_to :user, serializer: Users::ShortSerializer
+            has_many :ingredients, serializer: Ingredients::Serializer
+            has_many :directions, serializer: Directions::Serializer
           end
         end
         ```
-
-### Todo
-- [x] Add sample for CQRS (Command Query Responsibility Separate)
-- [x] Add sample multiple steps to create a model
-- [x] Add more complex use cases
