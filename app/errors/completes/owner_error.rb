@@ -1,11 +1,11 @@
 module Completes
-  class NotOwnerError < ValidateError
+  class OwnerError < ValidateError
     def initialize
       super('User can not complete his/her own recipe')
     end
 
     def code
-      'NOT_OWNER'
+      'IS_OWNER'
     end
   end
 end

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       end
 
       resource :completes, only: [:create, :destroy]
+      resources :reviews, only: [:create, :destroy]
     end
   end
 end
