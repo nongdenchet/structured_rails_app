@@ -34,5 +34,6 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:recipes).dependent(:destroy) }
     it { is_expected.to have_many(:completes).dependent(:destroy) }
     it { is_expected.to have_many(:complete_recipes).through(:completes).source(:recipe) }
+    it { is_expected.to have_many(:reviews).dependent(:destroy) }
   end
 end

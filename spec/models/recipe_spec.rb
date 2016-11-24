@@ -23,6 +23,7 @@ RSpec.describe Recipe, type: :model do
     it { is_expected.to have_many(:ingredients).dependent(:destroy) }
     it { is_expected.to have_many(:completes).dependent(:destroy) }
     it { is_expected.to have_many(:complete_users).through(:completes).source(:user) }
+    it { is_expected.to have_many(:reviews).dependent(:destroy) }
   end
 
   describe 'properties' do

@@ -1,6 +1,7 @@
 module Recipes
   class DetailSerializer < ActiveModel::Serializer
-    attributes :id, :title, :description, :image, :prepare_time, :cook_time, :ready_time, :status, :complete_status
+    attributes :id, :title, :description, :image, :prepare_time, :cook_time, :ready_time,
+               :complete_status, :complete_count, :review_count, :average_rating
 
     def initialize(record, extras = {})
       super(record)
@@ -11,6 +12,7 @@ module Recipes
     has_many :ingredients, serializer: Ingredients::Serializer
     has_many :directions, serializer: Directions::Serializer
     has_many :complete_users, serializer: Users::ShortSerializer
+    has_many :reviews, serializer: Reviews::ShortSerializer
 
     def complete_status
       @extras[:complete_status] || Completes::Status::INCOMPLETE

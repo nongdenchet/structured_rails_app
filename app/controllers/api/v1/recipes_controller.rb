@@ -9,6 +9,9 @@ module Api
       def index
       end
 
+      def feeds
+      end
+
       def completed
       end
 

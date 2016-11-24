@@ -26,7 +26,9 @@ module Recipes
       end
 
       def recipe
-        @recipe ||= Recipe.includes(:ingredients, :directions, :complete_users)
+        @recipe ||= Recipes::DetailQuery.new
+                      .execute
+                      .includes(:ingredients, :directions, :complete_users)
                       .find(params[:id])
       end
     end

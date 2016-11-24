@@ -14,10 +14,12 @@ Rails.application.routes.draw do
 
         collection do
           get :completed
+          get :feeds
         end
       end
 
       resource :completes, only: [:create, :destroy]
+      resources :reviews, only: [:create, :destroy]
     end
   end
 end

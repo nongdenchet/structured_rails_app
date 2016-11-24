@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   has_many :recipes, dependent: :destroy
   has_many :completes, dependent: :destroy
   has_many :complete_recipes, through: :completes, source: :recipe
+  has_many :reviews, dependent: :destroy
 
   def confirmation_required?
     false

@@ -1,16 +1,21 @@
 module Recipes
   module V1
-    class Completed < Service
+    class Feeds < Service
       require_authen!
 
       def process
-        recipes = user.complete_recipes
         recipes.map { |recipe| serialize(recipe) }
       end
 
       private
+      def recipes
+        Recipes::DetailQuery.new
+          .execute
+          .order(created_at: :desc)
+      end
+
       def serialize(recipe)
-        Recipes::SimpleSerializer.new(recipe)
+        Recipes::ShortSerializer.new(recipe)
       end
     end
   end

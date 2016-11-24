@@ -6,7 +6,7 @@ module Recipes
       def process
         validate!
         recipe = user.recipes.create!(recipe_params)
-        Recipes::ShortSerializer.new(recipe)
+        Recipes::Serializer.new(recipe)
       end
 
       private

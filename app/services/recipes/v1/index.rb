@@ -4,11 +4,17 @@ module Recipes
       require_authen!
 
       def process
-        recipes = user.recipes
         recipes.map { |recipe| serialize(recipe) }
       end
 
       private
+      def recipes
+        Recipes::DetailQuery.new
+          .execute
+          .where(user_id: user.id)
+          .order(updated_at: :desc)
+      end
+
       def serialize(recipe)
         Recipes::ShortSerializer.new(recipe)
       end

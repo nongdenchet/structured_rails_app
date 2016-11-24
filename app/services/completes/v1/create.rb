@@ -4,7 +4,7 @@ module Completes
       require_authen!
 
       def process
-        authorize_record!(recipe, Completes::NotOwnerError)
+        authorize_record!(recipe, Completes::OwnerError)
         check_has_completed!
         complete = user.completes.create(recipe_id: recipe.id)
         Completes::Serializer.new(complete)

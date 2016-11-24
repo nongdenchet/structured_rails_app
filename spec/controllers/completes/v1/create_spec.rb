@@ -26,7 +26,7 @@ RSpec.describe Api::V1::CompletesController, type: :controller do
       sign_in user
       post :create, recipe_id: invalid_recipe.id, format: :json
       expect(json_response_error['message']).to eq('User can not complete his/her own recipe')
-      expect(json_response_error['code']).to eq('NOT_OWNER')
+      expect(json_response_error['code']).to eq('IS_OWNER')
     end
 
     it 'return error when user try complete recipe twice' do
