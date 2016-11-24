@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: 'home#index'
-  devise_for :users
 
   namespace :api do
     scope module: :v1, constraints: ApiConstraint.new(version: :v1) do

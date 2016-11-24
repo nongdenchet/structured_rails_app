@@ -4,6 +4,7 @@ module Completes
       require_authen!
 
       def process
+        authorize_record!(complete)
         complete.destroy!
         {success: true}
       end
