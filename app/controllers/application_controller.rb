@@ -13,7 +13,11 @@ class ApplicationController < ActionController::Base
 
   private
   def find_version
-    request.headers.fetch(:version).upcase
+    request.headers
+      .fetch(:version)
+      .split(' ')
+      .last
+      .upcase
   end
 
   def find_and_create_service
