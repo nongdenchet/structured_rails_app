@@ -6,6 +6,7 @@ module Reviews
       def process
         authorize_record!(recipe, Reviews::OwnerError)
         check_has_reviewed!
+        validate!
         review = user.reviews.create(review_params)
         Reviews::Serializer.new(review)
       end

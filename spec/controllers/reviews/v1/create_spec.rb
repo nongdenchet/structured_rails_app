@@ -6,6 +6,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
   let(:recipe) { create(:recipe, user: other_user) }
   let(:invalid_recipe) { create(:recipe, user: user) }
   let(:review_params) { {content: 'content', rating: 4, recipe_id: recipe.id} }
+  let(:invalid_review_params) { {content: 'content', rating: 100, recipe_id: recipe.id} }
 
   before(:each) do
     set_version('v1')
@@ -38,6 +39,12 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       post :create, review: review_params, format: :json
       expect(json_response_error['message']).to eq('You have already reviewed this recipe')
       expect(json_response_error['code']).to eq('ALREADY_REVIEW')
+    end
+
+    it 'return 422' do
+      sign_in user
+      post :create, review: invalid_review_params, format: :json
+      assert_422
     end
 
     it 'return 404' do
