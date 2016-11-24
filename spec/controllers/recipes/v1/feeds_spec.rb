@@ -18,19 +18,24 @@ RSpec.describe Api::V1::RecipesController, type: :controller do
       end
       sign_in user
       get :feeds, format: :json
-      expect(json_response.length).to eq(2)
+      expect(json_response['recipes'].length).to eq(2)
+      expect(json_response['users'].length).to eq(3)
 
-      # Assert recipe1
-      recipe1 = json_response[0]
-      expect(recipe1['complete_count']).to eq(2)
-      expect(recipe1['review_count']).to eq(2)
-      expect(recipe1['average_rating'].to_f).to eq(1.5)
+      # Assert recipe_1
+      recipe_1 = json_response['recipes'][0]
+      expect(recipe_1['complete_count']).to eq(2)
+      expect(recipe_1['review_count']).to eq(2)
+      expect(recipe_1['average_rating'].to_f).to eq(1.5)
 
-      # Assert recipe2
-      recipe2 = json_response[1]
-      expect(recipe2['complete_count']).to eq(0)
-      expect(recipe2['review_count']).to eq(0)
-      expect(recipe2['average_rating'].to_f).to eq(0)
+      # Assert recipe_2
+      recipe_2 = json_response['recipes'][1]
+      expect(recipe_2['complete_count']).to eq(0)
+      expect(recipe_2['review_count']).to eq(0)
+      expect(recipe_2['average_rating'].to_f).to eq(0)
+
+      # Assert users
+      complete_counts = json_response['users'].map { |user| user['complete_count'] }
+      expect(complete_counts).to eq([1, 1, 0])
     end
   end
 end

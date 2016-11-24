@@ -4,7 +4,7 @@ module Recipes
       require_authen!
 
       def process
-        recipes.map { |recipe| serialize(recipe) }
+        result.new(recipes, users)
       end
 
       private
@@ -12,10 +12,17 @@ module Recipes
         Recipes::DetailQuery.new
           .execute
           .order(created_at: :desc)
+          .map { |recipe| Recipes::ShortSerializer.new(recipe) }
       end
 
-      def serialize(recipe)
-        Recipes::ShortSerializer.new(recipe)
+      def users
+        Users::BestCompleteQuery.new
+          .execute
+          .map { |recipe| Users::CompleteSerializer.new(recipe) }
+      end
+
+      def result
+        Struct.new(:recipes, :users)
       end
     end
   end
