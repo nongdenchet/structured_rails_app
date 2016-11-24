@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
         collection do
           get :completed
+          get :feeds
         end
       end
 
