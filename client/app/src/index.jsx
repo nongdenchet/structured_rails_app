@@ -10,7 +10,7 @@ import routes from './routes/routes';
 const storeWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = storeWithMiddleware(reducers);
 
-const Index = (_props, railsContext) => {
+const Index = (_props, _railsContext) => {
   return (
     <Provider store={store}>
       <Router history={browserHistory}>
