@@ -42,6 +42,10 @@ const config = {
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.scss$/,
+        loader: ['style', 'css', 'sass']
+      },
     ],
   },
 };

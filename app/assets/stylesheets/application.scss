@@ -1,9 +1,4 @@
-@import 'flat-ui/variables';
-@import 'bootstrap';
-@import 'flat-ui';
-
-.hello-world-container {
-  padding-left: 15%;
-  padding-right: 15%;
-  padding-top: 2%;
-}
+@import "flat-ui/variables";
+@import "bootstrap";
+@import "flat-ui";
+@import "header";

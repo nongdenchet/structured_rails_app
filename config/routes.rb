@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   root to: 'home#index'
+  get '/*all', to: 'home#index'
 
   namespace :admins do
     get 'dashboard/index'
