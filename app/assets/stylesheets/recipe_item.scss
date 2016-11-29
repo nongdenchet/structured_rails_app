@@ -1,0 +1,17 @@
+.recipe-item {
+  margin-bottom: 24px;
+
+  .caption > h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 40px;
+    max-height: 40px;
+  }
+
+  .caption > p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    height: 60px;
+  }
+}

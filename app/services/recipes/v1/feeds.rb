@@ -11,6 +11,7 @@ module Recipes
       def recipes
         Recipes::DetailQuery.new
           .execute
+          .includes(:user)
           .order(created_at: :desc)
           .map { |recipe| Recipes::ShortSerializer.new(recipe) }
       end
