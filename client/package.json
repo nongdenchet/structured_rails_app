@@ -9,7 +9,7 @@
     "build:test": "webpack --config webpack.config.js",
     "build:production": "NODE_ENV=production webpack --config webpack.config.js",
     "build:development": "webpack -w --config webpack.config.js",
-    "test": "NODE_PATH=src mocha --compilers js:babel-register --require ./app/test/helper.js './app/test/**/*.spec.js*'"
+    "test": "NODE_PATH=src istanbul cover _mocha -- --compilers js:babel-register --require ./app/test/helper.js './app/test/**/*.spec.js*'"
   },
   "cacheDirectories": [
     "node_modules",
@@ -47,8 +47,10 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
+    "istanbul": "^0.4.5",
     "jquery": "^3.1.1",
     "jsdom": "^9.8.3",
     "mocha": "^3.2.0",
