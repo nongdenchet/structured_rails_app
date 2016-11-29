@@ -1,8 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+import RequireAuth from '../components/auth/RequireAuth';
+
 import App from '../components/App';
 import Home from '../components/Home';
+import SignIn from '../components/auth/SignIn';
+import SignUp from '../components/auth/SignUp';
 import YourRecipes from '../containers/YourRecipes';
 import NewRecipe from '../containers/NewRecipe';
 import Completed from '../containers/Completed';
@@ -10,8 +14,10 @@ import Completed from '../containers/Completed';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home}/>
-    <Route path="your-recipes" component={YourRecipes}/>
-    <Route path="completed" component={Completed}/>
-    <Route path="new-recipe" component={NewRecipe}/>
+    <Route path="sign-in" component={SignIn}/>
+    <Route path="sign-up" component={SignUp}/>
+    <Route path="your-recipes" component={RequireAuth(YourRecipes)}/>
+    <Route path="completed" component={RequireAuth(Completed)}/>
+    <Route path="new-recipe" component={RequireAuth(NewRecipe)}/>
   </Route>
 );

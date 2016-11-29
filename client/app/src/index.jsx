@@ -21,3 +21,12 @@ const Index = (_props, _railsContext) => {
 };
 
 ReactOnRails.register({ Index });
+
+// Startup Config
+import { configApi } from './configs/ApiConfig';
+import { AUTH_USER } from './actions/Types';
+
+configApi();
+if (localStorage.getItem('auth')) {
+  store.dispatch({ type: AUTH_USER });
+}

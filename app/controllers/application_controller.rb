@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   private
   def find_version
     request.headers
-      .fetch(:version)
-      .split(' ')
+      .fetch(:accept)
+      .split('version=')
       .last
       .upcase
   end
