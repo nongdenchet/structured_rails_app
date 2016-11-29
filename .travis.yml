@@ -10,15 +10,16 @@ addons:
   postgresql: "9.3"
 script:
   - "COVERAGE=true bundle exec spring rspec spec"
+  - "cd client"
+  - "npm run build:production"
+  - "npm test"
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - "bundle exec rake db:create"
   - "bundle exec rake db:migrate"
   - "npm install"
-  - "cd client"
-  - "npm install"
-  - "npm run build:production"
-  - "npm test"
+  - "cd client && npm install"
+  - "cd .."
 sudo: true
 dist: trusty
