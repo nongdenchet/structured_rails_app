@@ -12,7 +12,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.recipes);
     return (
       <div className="home">
         {isAuthenticated() ? this.renderRecipes() : "Hello World"}

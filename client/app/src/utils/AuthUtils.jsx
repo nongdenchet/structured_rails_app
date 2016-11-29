@@ -8,11 +8,11 @@ export function authError(errors) {
 }
 
 export function authFromLocal() {
-  return JSON.parse(localStorage.getItem('auth'));
+  return JSON.parse(window.localStorage.getItem('auth'));
 }
 
 export function isAuthenticated() {
-  return localStorage.getItem('auth');
+  return window.localStorage.getItem('auth');
 }
 
 export function authFromHeader(headers) {
