@@ -11,6 +11,10 @@ export function authFromLocal() {
   return JSON.parse(localStorage.getItem('auth'));
 }
 
+export function isAuthenticated() {
+  return localStorage.getItem('auth');
+}
+
 export function authFromHeader(headers) {
   return JSON.stringify({
     'access-token': headers['access-token'],

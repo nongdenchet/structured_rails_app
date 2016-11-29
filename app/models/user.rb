@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :confirmable
+  mount_uploader :image
 
   has_many :recipes, dependent: :destroy
   has_many :completes, dependent: :destroy

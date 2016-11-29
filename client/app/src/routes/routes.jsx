@@ -4,7 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import RequireAuth from '../containers/auth/RequireAuth';
 
 import App from '../components/App';
-import Home from '../components/Home';
+import Home from '../containers/Home';
 import SignIn from '../containers/auth/SignIn';
 import SignUp from '../containers/auth/SignUp';
 import YourRecipes from '../containers/YourRecipes';
