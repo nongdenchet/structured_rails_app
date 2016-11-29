@@ -1,5 +1,7 @@
 language: ruby
 cache: bundler
+node_js:
+  - "5.3.0"
 rvm:
   - 2.2.2
 services:
@@ -13,5 +15,10 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - "bundle exec rake db:create"
   - "bundle exec rake db:migrate"
+  - "npm install"
+  - "cd client"
+  - "npm install"
+  - "npm run build:production"
+  - "npm test"
 sudo: true
 dist: trusty

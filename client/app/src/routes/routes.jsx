@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import RequireAuth from '../components/auth/RequireAuth';
+import RequireAuth from '../containers/auth/RequireAuth';
 
 import App from '../components/App';
 import Home from '../components/Home';
-import SignIn from '../components/auth/SignIn';
-import SignUp from '../components/auth/SignUp';
+import SignIn from '../containers/auth/SignIn';
+import SignUp from '../containers/auth/SignUp';
 import YourRecipes from '../containers/YourRecipes';
 import NewRecipe from '../containers/NewRecipe';
 import Completed from '../containers/Completed';

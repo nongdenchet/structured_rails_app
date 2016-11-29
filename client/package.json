@@ -9,7 +9,7 @@
     "build:test": "webpack --config webpack.config.js",
     "build:production": "NODE_ENV=production webpack --config webpack.config.js",
     "build:development": "webpack -w --config webpack.config.js",
-    "test": "NODE_PATH=src mocha --compilers js:babel-register --require ./test/helper.js 'src/**/*.spec.js*'"
+    "test": "NODE_PATH=src mocha --compilers js:babel-register --require ./app/test/helper.js './app/test/**/*.spec.js*'"
   },
   "cacheDirectories": [
     "node_modules",
