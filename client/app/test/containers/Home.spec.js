@@ -43,7 +43,7 @@ describe('Home', () => {
     })
     const wrapper = mount(<Home />, { context })
     setTimeout(function() {
-      expect(wrapper).to.contain.text('Hello World')
+      expect(wrapper).to.contain.text('Hello')
       done();
     }, 10);
   })

@@ -6,6 +6,8 @@ import { Router, browserHistory } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/RootReducer';
 import routes from './routes/routes';
+import translation from './utils/Translation';
+import { loadTranslations, setLocale, syncTranslationWithStore } from 'react-redux-i18n';
 
 const storeWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = storeWithMiddleware(reducers);
@@ -30,3 +32,8 @@ configApi();
 if (localStorage.getItem('auth')) {
   store.dispatch({ type: AUTH_USER });
 }
+
+// I18n Config
+syncTranslationWithStore(store)
+store.dispatch(loadTranslations(translation));
+store.dispatch(setLocale('en'));
