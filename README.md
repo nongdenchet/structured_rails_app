@@ -4,6 +4,7 @@ This repo is an approach to architect rails app into a more enterprise way
 ### Setup
 - Run `bundle install` to install gem
 - Run `npm install` to install node.js libraries
+- Run `npm run postinstall` to install libraries for client side
 - Run `npm run rails` to start server and development mode
 - Run `rails db:create db:migrate` to init database
 - Run `rails db:migrate RAILS_ENV=test` then `spring rspec spec` to run the test suites
