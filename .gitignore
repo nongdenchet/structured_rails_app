@@ -24,3 +24,4 @@ node_modules
 /app/assets/webpack/*
 coverage
 public/uploads
+/client/.idea/**
