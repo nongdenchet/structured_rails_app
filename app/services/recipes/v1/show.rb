@@ -28,7 +28,7 @@ module Recipes
       def recipe
         @recipe ||= Recipes::DetailQuery.new
                       .execute
-                      .includes(:ingredients, :directions, :complete_users)
+                      .includes(:ingredients, :directions, :complete_users, reviews: :user)
                       .find(params[:id])
       end
     end

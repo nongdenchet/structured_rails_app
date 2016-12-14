@@ -1,5 +1,6 @@
 module Recipes
-  class DetailSerializer < ActiveModel::Serializer
+  class DetailSerializer < BaseSerializer
+    default_include 'user,ingredients,directions,complete_users,reviews.user'
     attributes :id, :title, :description, :image, :prepare_time, :cook_time, :ready_time,
                :complete_status, :complete_count, :review_count, :average_rating
 
@@ -16,6 +17,18 @@ module Recipes
 
     def complete_status
       @extras[:complete_status] || Completes::Status::INCOMPLETE
+    end
+
+    def complete_count
+      object.try(:complete_count) || 0
+    end
+
+    def review_count
+      object.try(:review_count) || 0
+    end
+
+    def average_rating
+      object.try(:average_rating) || 0
     end
   end
 end

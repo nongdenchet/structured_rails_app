@@ -36,6 +36,7 @@ RSpec.describe Api::V1::RecipesController, type: :controller do
       expect(json_response['review_count']).to eq(2)
       expect(json_response['average_rating'].to_f).to eq(1.5)
       expect(json_response['reviews'].length).to eq(2)
+      expect(json_response['reviews'][0]['user']).not_to be_nil
       expect(json_response['complete_users'].length).to eq(2)
     end
 
