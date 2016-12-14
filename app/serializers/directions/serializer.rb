@@ -1,5 +1,5 @@
 module Directions
-  class Serializer < ActiveModel::Serializer
+  class Serializer < BaseSerializer
     attributes :content
   end
 end

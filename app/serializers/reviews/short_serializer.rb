@@ -1,5 +1,5 @@
 module Reviews
-  class ShortSerializer < ActiveModel::Serializer
+  class ShortSerializer < BaseSerializer
     attributes :id, :rating, :content, :created_at
 
     belongs_to :user, serializer: Users::ShortSerializer

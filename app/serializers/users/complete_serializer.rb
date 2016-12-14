@@ -1,5 +1,5 @@
 module Users
-  class CompleteSerializer < ActiveModel::Serializer
+  class CompleteSerializer < BaseSerializer
     attributes :id, :name, :image, :complete_count
 
     def complete_count

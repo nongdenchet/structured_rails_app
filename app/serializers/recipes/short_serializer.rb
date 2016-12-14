@@ -1,5 +1,5 @@
 module Recipes
-  class ShortSerializer < ActiveModel::Serializer
+  class ShortSerializer < BaseSerializer
     attributes :id, :title, :description, :image, :prepare_time, :cook_time, :ready_time,
                :complete_count, :review_count, :average_rating
 

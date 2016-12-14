@@ -141,7 +141,7 @@ This repo is an approach to architect rails app into a more enterprise way
         For example:
         ```ruby
         module Recipes
-          class Serializer < ActiveModel::Serializer
+          class Serializer < BaseSerializer
             attributes :id, :title, :description, :image, :prepare_time, :cook_time, :ready_time
         
             belongs_to :user, serializer: Users::ShortSerializer

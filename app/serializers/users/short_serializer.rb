@@ -1,5 +1,5 @@
 module Users
-  class ShortSerializer < ActiveModel::Serializer
+  class ShortSerializer < BaseSerializer
     attributes :id, :name, :image
   end
 end
