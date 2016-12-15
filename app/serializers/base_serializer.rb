@@ -8,7 +8,7 @@ class BaseSerializer < ActiveModel::Serializer
   end
 
   def default_include_tree
-    ActiveModel::Serializer::IncludeTree.from_string(self.class.include || '*')
+    self.class.include || '*'
   end
 
   def as_json(adapter_opts = {})
