@@ -1,6 +1,6 @@
 module Recipes
   module V1
-    class Update < Service
+    class Update < Operation
       require_authen!
 
       def process

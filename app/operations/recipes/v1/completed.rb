@@ -1,6 +1,6 @@
 module Recipes
   module V1
-    class Completed < Service
+    class Completed < Operation
       require_authen!
 
       def process

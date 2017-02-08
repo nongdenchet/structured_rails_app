@@ -1,12 +1,14 @@
-class Service
+class Operation
   include Support::Authen
   include Support::Policy
   include Support::Validate
 
-  attr_accessor :user, :params
+  attr_accessor :user, :params, :headers, :request_obj
 
-  def initialize(params, user = nil)
+  def initialize(params, request, user = nil)
     @params = params
+    @request_obj = request
+    @headers = request.headers
     @user = user
   end
 

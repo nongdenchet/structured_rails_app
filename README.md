@@ -13,7 +13,7 @@ This repo is an approach to architect rails app into a more enterprise way
 - The architecture is inspired by [Clean Architecture](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html)
 - Using common pattern in rails like: `Service Object`, `Form Object`, `Policy`, `Query Object`.
 - Components:
-    1. `Controller` does nothing than delegate each action to `Service` (automatically). Controller will discover appropriate service
+    1. `Controller` does nothing than delegate each action to `Operation` (automatically). Controller will discover appropriate operation
         
         For example:
         ```ruby
@@ -24,14 +24,14 @@ This repo is an approach to architect rails app into a more enterprise way
           end
         end
         ```
-        `before_action :execute` will discover `Recipes::Show` service and call it, then return data as `json`
-    2. `Service` (Use Case) will do `business logic` and call `Query` or `ActiveRecord` for data access. We can get rid off many `before_action` from `Controller` and delegate them to `Service` for example using `require_authen!`
+        `before_action :execute` will discover `Recipes::Show` operation and call it, then return data as `json`
+    2. `Operation` (Use Case) will do `business logic` and call `Query` or `ActiveRecord` for data access. We can get rid off many `before_action` from `Controller` and delegate them to `Operation` for example using `require_authen!`
     
         For example:
         ```ruby
         module Recipes
           module V1
-            class Create < Service
+            class Create < Operation
               require_authen!
         
               def process

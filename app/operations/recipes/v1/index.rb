@@ -1,6 +1,6 @@
 module Recipes
   module V1
-    class Index < Service
+    class Index < Operation
       require_authen!
 
       def process

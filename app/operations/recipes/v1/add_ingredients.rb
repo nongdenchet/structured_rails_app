@@ -1,6 +1,6 @@
 module Recipes
   module V1
-    class AddIngredients < Service
+    class AddIngredients < Operation
       require_authen!
 
       def process

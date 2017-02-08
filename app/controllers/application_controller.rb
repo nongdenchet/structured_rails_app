@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
 
+  before_action :set_user_by_token
   protect_from_forgery unless: -> { request.format.json? }
 
   def execute
     begin
-      render_response(find_and_create_service.execute)
+      render_response(create_operation.execute)
     rescue BaseError => error
       render_response(error)
     end
@@ -20,9 +21,16 @@ class ApplicationController < ActionController::Base
       .upcase
   end
 
-  def find_and_create_service
-    clazz = "#{find_module}::#{find_version}::#{find_action}".constantize
-    clazz.new(params, current_api_user)
+  def create_operation
+    find_operation.new(params, request, @resource)
+  end
+
+  def resource_class(mapping = nil)
+    User
+  end
+
+  def find_operation
+    "#{find_module}::#{find_version}::#{find_action}".constantize
   end
 
   def find_module
@@ -43,7 +51,12 @@ class ApplicationController < ActionController::Base
     if data.kind_of?(BaseError)
       render json: data.to_json, status: data.status
     else
-      render json: data.to_json
+      if (header = data.try(:header))
+        response.headers.merge!(header)
+        render json: data.body.to_json
+      else
+        render json: data.to_json
+      end
     end
   end
 end

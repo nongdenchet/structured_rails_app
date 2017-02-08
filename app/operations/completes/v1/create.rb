@@ -1,6 +1,6 @@
 module Completes
   module V1
-    class Create < Service
+    class Create < Operation
       require_authen!
 
       def process

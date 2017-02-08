@@ -1,6 +1,6 @@
 module Recipes
   module V1
-    class AddDirections < Service
+    class AddDirections < Operation
       require_authen!
 
       def process

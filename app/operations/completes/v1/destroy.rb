@@ -1,6 +1,6 @@
 module Completes
   module V1
-    class Destroy < Service
+    class Destroy < Operation
       require_authen!
 
       def process

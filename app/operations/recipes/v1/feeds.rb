@@ -1,6 +1,6 @@
 module Recipes
   module V1
-    class Feeds < Service
+    class Feeds < Operation
       require_authen!
 
       def process

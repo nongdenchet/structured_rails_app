@@ -1,6 +1,6 @@
 module Recipes
   module V1
-    class Show < Service
+    class Show < Operation
       def process
         authorize!(recipe, NotFound)
         Recipes::DetailSerializer.new(recipe, extras)
